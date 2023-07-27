@@ -12,7 +12,7 @@
 namespace mao {
 namespace util {
 
-long long GetTimeSampS() {
+long GetTimeSampS() {
   auto tp = std::chrono::system_clock::now();
   auto seconds = std::chrono::duration_cast<std::chrono::seconds>(tp.time_since_epoch());
   return seconds.count();
@@ -26,14 +26,16 @@ long long GetTimeSampM() {
 
 std::string TimeSampS2Str(long samp, const std::string &fmt = "%Y-%m-%d %H:%M:%S") {
   std::stringstream ss;
-  ss << std::put_time(std::localtime(&samp), fmt.c_str());
+  time_t t = samp;
+  ss << std::put_time(std::localtime(&t), fmt.c_str());
   return ss.str();
 }
 
 std::string TimeSampM2Str(long long samp, const std::string &fmt = "%Y-%m-%d %H:%M:%S") {
   long samps = samp / 1000;
   std::stringstream ss;
-  ss << std::put_time(std::localtime(&samps), fmt.c_str());
+  time_t t = samps;
+  ss << std::put_time(std::localtime(&t), fmt.c_str());
   ss << "." << std::setfill('0') << std::setw(3) << samps % 1000;
   return ss.str();
 }

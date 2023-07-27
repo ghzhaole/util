@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by leo on 2023/7/27.
 //
 #include <string>
@@ -10,7 +10,7 @@ namespace mao {
 namespace util {
 class CFileUtil {
   enum class OpenState {
-    NOT_OPEN = 0, ERROR, WRITE, READ
+    NOT_OPEN = 0, ERR, WRITE, READ
   };
 
  public:
@@ -29,14 +29,14 @@ class CFileUtil {
       if (this->ifstream_.is_open()) {
         this->state_ = OpenState::READ;
       } else {
-        this->state_ = OpenState::ERROR;
+        this->state_ = OpenState::ERR;
       }
     } else if (mode & std::ios::out) {
       this->ofstream_ = std::ofstream(std::filesystem::path(filePath), mode);
       if (this->ofstream_.is_open()) {
         this->state_ = OpenState::WRITE;
       } else {
-        this->state_ = OpenState::ERROR;
+        this->state_ = OpenState::ERR;
       }
     }
 
