@@ -7,6 +7,7 @@
 #include "string/StringUtil.h"
 #include "library/CLibraryLoader.h"
 #include "file/CFileUtil.h"
+#include "time/timeUtil.h"
 
 struct MyStruct {
   int i{1};
@@ -28,6 +29,14 @@ struct MyStruct {
 
 using addfunc = int(int, int);
 int main() {
+
+  std::cout<<mao::util::GetTimeSampM()<<std::endl;
+  std::cout<<mao::util::GetTimeSampS()<<std::endl;
+
+  std::cout<<mao::util::TimeSampS2Str(mao::util::GetTimeSampS())<<std::endl;
+  std::cout<<mao::util::TimeSampM2Str(mao::util::GetTimeSampM())<<std::endl;
+  std::cout<<mao::util::Str2TimeSampS(mao::util::TimeSampS2Str(mao::util::GetTimeSampS()))<<std::endl;
+
   std::string s = "你好";
   std::cout << mao::util::utf82ansi(s) << std::endl;
 
